@@ -1,0 +1,19 @@
+[project]
+name = "GG_wx_fapiao_download"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Capsion", email = "373704015@qq.com"},
+]
+dependencies = [
+    "pydantic>=2.11.3",
+    "pymupdf>=1.25.5",
+    "pillow>=11.1.0",
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
