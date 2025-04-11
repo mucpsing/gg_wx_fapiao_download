@@ -15,11 +15,9 @@ sys.path.append("..")
 
 from os import path
 from pathlib import Path
-from pydantic import BaseModel
 
 
-import os
-import time, datetime
+import time
 import threading
 from src.pdf_change import convert_pdf_to_a4_portrait
 from src.utils import str2md5
@@ -52,7 +50,11 @@ class DirectoryWatchToA4Pdf:
 
     def _get_files(self):
         """获取当前目录下所有文件的集合"""
-        return set(os.path.join(root, f) for root, _, files in os.walk(self.path) for f in files)
+        return set(
+            os.path.join(root, f)
+            for root, _, files in os.walk(self.path)
+            for f in files
+        )
 
     def _poll(self):
         """轮询逻辑的核心循环"""
@@ -83,21 +85,21 @@ class DirectoryWatchToA4Pdf:
         """停止轮询线程"""
         if self._running:
             self._running = False
-            self.thread.join()  # 等待线程结束
+            # self.thread.join()  # 等待线程结束
             print("轮询线程已停止")
 
 
 # 使用示例
-if __name__ == "__main__":
-    tar = r"W:\CPS\MyProject\projsect_persional\gg_wx_fapiao_download\data"
+# if __name__ == "__main__":
+#     tar = r"W:\CPS\MyProject\projsect_persional\gg_wx_fapiao_download\data"
 
-    poller = DirectoryWatchToA4Pdf(tar, interval=1)
-    poller.start()
+#     poller = DirectoryWatchToA4Pdf(tar, interval=1)
+#     poller.start()
 
-    try:
-        # 主程序继续执行其他逻辑
-        while True:
-            print("[主程序] 正在运行...")
-            time.sleep(5)
-    except KeyboardInterrupt:
-        poller.stop()
+#     try:
+#         # 主程序继续执行其他逻辑
+#         while True:
+#             print("[主程序] 正在运行...")
+#             time.sleep(5)
+#     except KeyboardInterrupt:
+#         poller.stop()

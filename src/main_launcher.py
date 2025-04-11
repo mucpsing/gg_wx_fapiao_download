@@ -66,17 +66,25 @@ class UI(Application):
     def init_dragged_file(self):
         import windnd
 
-        def dragged_files(files, encodeing="gbk"):
-            if len(files) > 1:
-                showwarning("文件太多", "仅支持单个文件识别")
-            sel_path = files[0].decode(encodeing)
+        # def dragged_files(files, encodeing="gbk"):
+        #     if len(files) > 1:
+        #         showwarning("文件太多", "仅支持单个文件识别")
 
-            if not sel_path or not os.path.exists(sel_path):
-                return
-            self.Text1Var.set(files[0].decode(encodeing))
-            self._watch_path(sel_path)
+        #     sel_path = files[0].decode(encodeing)
 
-        windnd.hook_dropfiles(self.master, func=dragged_files)
+        #     self.Text1Var.set(sel_path)
+        #     self._watch_path(sel_path)
+
+        windnd.hook_dropfiles(self.master, func=self.onDraggedFiles)
+
+    def onDraggedFiles(self, files, encodeing="gbk"):
+        if len(files) > 1:
+            showwarning("文件太多", "仅支持单个文件识别")
+
+        sel_path = files[0].decode(encodeing)
+
+        self.Text1Var.set(sel_path)
+        self._watch_path(sel_path)
 
     def on_close(self):
         if self.watcher:
@@ -91,9 +99,6 @@ class UI(Application):
         # 点击按钮打开文件的调用
         sel_path = selectPath("dir")
         if not sel_path or not os.path.exists(sel_path):
-            return
-
-        if sel_path == self.sel_path:
             return
 
         # 修改UI
@@ -113,8 +118,15 @@ class UI(Application):
         """
         @Description 开始监听指定的文件夹
         """
+        if not sel_path or not os.path.exists(sel_path):
+            return
+
+        if sel_path == self.sel_path:
+            return
 
         if self.watcher:
+            print("停止线程")
+
             self.watcher.stop()
             self.watcher = None
 
