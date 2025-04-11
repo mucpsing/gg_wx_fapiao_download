@@ -1,46 +1,56 @@
 VERSION 5.00
 Begin VB.Form MainForm 
    Caption         =   "Form1"
-   ClientHeight    =   4965
+   ClientHeight    =   4960
    ClientLeft      =   120
-   ClientTop       =   465
-   ClientWidth     =   8775
+   ClientTop       =   470
+   ClientWidth     =   8780
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4965
-   ScaleWidth      =   8775
-   Begin VB.CommandButton mainBtn_run 
-      Caption         =   "运     行"
+   ScaleHeight     =   4960
+   ScaleWidth      =   8780
+   Begin VB.CommandButton mainBtn_sel_file 
+      Caption         =   "绑定目录"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   12
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   615
       Left            =   120
-      TabIndex        =   4
-      Top             =   4200
-      Width           =   6375
-   End
-   Begin VB.CommandButton mainBtn_open_config_editor 
-      Caption         =   "配置编辑器"
-      Height          =   615
-      Left            =   6600
       TabIndex        =   3
       Top             =   4200
-      Width           =   1935
+      Width           =   8410
    End
    Begin VB.Frame Frame1 
-      Caption         =   "配置文件路径"
+      Caption         =   "当前目录绑定目录"
       Height          =   975
       Left            =   120
       TabIndex        =   1
       Top             =   3120
-      Width           =   8415
+      Width           =   8410
       Begin VB.TextBox Text1 
          Height          =   615
          Left            =   120
          TabIndex        =   2
          Top             =   240
-         Width           =   8175
+         Width           =   8170
       End
    End
-   Begin VB.CommandButton mainBtn_sel_file 
-      Caption         =   "点击打开或者拖拽文件"
+   Begin VB.CommandButton mainBtn_copy 
+      Caption         =   "一键【点击】复制下载脚本"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   14
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   2895
       Left            =   120
       TabIndex        =   0

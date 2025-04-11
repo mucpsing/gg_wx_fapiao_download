@@ -32,6 +32,7 @@ def selectPath(
     dialog_type: DialogTypeT = DialogTypeT.file,
     root: str = os.getcwd(),
     filetypes: DIALOG_TYPES = None,
+    title: str = "",
 ) -> str:
     """
     @Description 弹出一个选择框，可以选择文件和目录
@@ -46,10 +47,11 @@ def selectPath(
     """
     try:
         sel_path = ""
+
         if dialog_type == DialogTypeT.file.value:
             # 选择文件path_接收文件地址
             sel_path = filedialog.askopenfilename(
-                title="选择文件",
+                title=title if title else "选择文件",
                 filetypes=(("*.py", "py"), ("*.txt", "txt")),
                 initialdir=root,
             )
@@ -57,7 +59,7 @@ def selectPath(
         elif dialog_type == DialogTypeT.dir.value:
             # 选择文件path_接收文件地址
             sel_path = filedialog.askdirectory(
-                title="选择目录",
+                title=title if title else "选择目录",
                 initialdir=root,
             )
 

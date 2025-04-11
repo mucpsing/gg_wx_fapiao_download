@@ -10,8 +10,6 @@
 @echo off && setlocal enabledelayedexpansion
 @chcp 65001
 
-rem npx terser "src/download_pdf_and_click.js" --output "src/scripts.js" --compress --mangle --comments false
-
 pdm run python -m nuitka --onefile --windows-disable-console --plugin-enable=tk-inter --standalone --show-memory --show-progress --nofollow-imports --follow-import-to=src --output-dir=dist main.py
 
 pause

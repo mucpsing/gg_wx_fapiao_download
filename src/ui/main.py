@@ -23,21 +23,21 @@ class Application_ui(Frame):
 
         self.style = Style()
 
-        self.mainBtn_sel_fileVar = StringVar(value='【绑定目录】 - 自动将该目录下所有PDF文件为A4纵向')
+        self.mainBtn_sel_fileVar = StringVar(value='绑定目录')
         self.style.configure('TmainBtn_sel_file.TButton', font=('宋体',12))
-        self.mainBtn_sel_file = Button(self.top, text='【绑定目录】 - 自动将该目录下所有PDF文件为A4纵向', textvariable=self.mainBtn_sel_fileVar, command=self.mainBtn_sel_file_Cmd, style='TmainBtn_sel_file.TButton')
+        self.mainBtn_sel_file = Button(self.top, text='绑定目录', textvariable=self.mainBtn_sel_fileVar, command=self.mainBtn_sel_file_Cmd, style='TmainBtn_sel_file.TButton')
         self.mainBtn_sel_file.setText = lambda x: self.mainBtn_sel_fileVar.set(x)
         self.mainBtn_sel_file.text = lambda : self.mainBtn_sel_fileVar.get()
         self.mainBtn_sel_file.place(relx=0.014, rely=0.847, relwidth=0.958, relheight=0.124)
 
         self.style.configure('TFrame1.TLabelframe', font=('宋体',9))
         self.style.configure('TFrame1.TLabelframe.Label', font=('宋体',9))
-        self.Frame1 = LabelFrame(self.top, text='当前目录', style='TFrame1.TLabelframe')
+        self.Frame1 = LabelFrame(self.top, text='当前目录绑定目录', style='TFrame1.TLabelframe')
         self.Frame1.place(relx=0.014, rely=0.629, relwidth=0.958, relheight=0.197)
 
-        self.mainBtn_copyVar = StringVar(value='点击复制挟持脚本')
+        self.mainBtn_copyVar = StringVar(value='一键【点击】复制下载脚本')
         self.style.configure('TmainBtn_copy.TButton', font=('宋体',14))
-        self.mainBtn_copy = Button(self.top, text='点击复制挟持脚本', textvariable=self.mainBtn_copyVar, command=self.mainBtn_copy_Cmd, style='TmainBtn_copy.TButton')
+        self.mainBtn_copy = Button(self.top, text='一键【点击】复制下载脚本', textvariable=self.mainBtn_copyVar, command=self.mainBtn_copy_Cmd, style='TmainBtn_copy.TButton')
         self.mainBtn_copy.setText = lambda x: self.mainBtn_copyVar.set(x)
         self.mainBtn_copy.text = lambda : self.mainBtn_copyVar.get()
         self.mainBtn_copy.place(relx=0.014, rely=0.024, relwidth=0.972, relheight=0.584)

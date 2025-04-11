@@ -13,7 +13,7 @@ import sys
 
 sys.path.append("..")
 
-from src.main_launcher import start_with_ui
+from src.launcher import start_with_ui
 
 if __name__ == "__main__":
     start_with_ui()

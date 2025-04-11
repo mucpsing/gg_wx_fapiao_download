@@ -19,8 +19,8 @@ from pathlib import Path
 
 import time
 import threading
-from src.pdf_change import convert_pdf_to_a4_portrait
-from src.utils import str2md5
+from src import utils
+from src.utils import tools, pdf
 
 
 class DirectoryWatchToA4Pdf:
@@ -37,7 +37,7 @@ class DirectoryWatchToA4Pdf:
             if each.name.endswith("_A4.pdf"):
                 continue
 
-            md5 = str2md5(f"{each.name}_{each.stat().st_mtime}")
+            md5 = tools.str2md5(f"{each.name}_{each.stat().st_mtime}")
 
             if md5 in self.handleFileList:
                 continue
@@ -45,7 +45,7 @@ class DirectoryWatchToA4Pdf:
             if not md5 in self.handleFileList:
                 basename, ext = path.splitext(each.name)
                 output_a4_pdf = path.join(self.path, f"{basename}_A4{ext}")
-                convert_pdf_to_a4_portrait(each, output_a4_pdf)
+                pdf.convert_pdf_to_a4_portrait(each, output_a4_pdf)
                 self.handleFileList.append(md5)
 
     def _get_files(self):
@@ -66,13 +66,32 @@ class DirectoryWatchToA4Pdf:
             deleted = previous_files - current_files
             if created:
                 print(f"[轮询] 新增文件: {created}")
-                self._conver_pdf_a4()
+                for each in created:
+                    if not each.endswith(".pdf"):
+                        continue
+
+                    full_path = path.join(self.path, each)
+                    basename, ext = path.splitext(path.basename(full_path))
+                    md5 = tools.str2md5(f"{basename}_{os.stat(full_path).st_ctime}")
+                    output_a4_pdf = path.join(self.path, f"{basename}_A4{ext}")
+                    if md5 in self.handleFileList and path.exists(output_a4_pdf):
+                        print("文件md5已存在跳过: ", basename)
+                        continue
+
+                    if each.endswith("_A4.pdf"):
+                        continue
+
+                    pdf.convert_pdf_to_a4_portrait(each, output_a4_pdf)
+                    self.handleFileList.append(md5)
+
+                tools.refresh_explorer()
+
             if deleted:
                 print(f"[轮询] 删除文件: {deleted}")
             previous_files = current_files
 
     def start(self):
-        self._conver_pdf_a4()
+        # self._conver_pdf_a4()
         """启动轮询线程"""
         if not self._running:
             self._running = True
