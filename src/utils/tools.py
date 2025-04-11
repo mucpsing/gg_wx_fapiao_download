@@ -1,3 +1,19 @@
+# -*- coding: utf-8 -*-
+#
+# @Author: CPS
+# @email: 373704015@qq.com
+# @Date:
+# @Last Modified by: CPS
+# @Last Modified time: 2025-04-11 21:05:19.425529
+# @file_path "D:\CPS\MyProject\Projects_Personal\GG_wx_fapiao_download\src\utils"
+# @Filename "tools.py"
+# @Description: 这是一个工具函数库，只要是工具函数就可以往这里放
+#
+import os, sys
+
+sys.path.append("..")
+
+
 import hashlib, time
 import ctypes
 import ctypes.wintypes
