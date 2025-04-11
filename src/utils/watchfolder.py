@@ -84,7 +84,10 @@ class DirectoryWatchToA4Pdf:
                     pdf.convert_pdf_to_a4_portrait(each, output_a4_pdf)
                     self.handleFileList.append(md5)
 
-                tools.refresh_explorer()
+                try:
+                    tools.refresh_explorer(self.path)
+                except Exception as e:
+                    tools.refresh_explorer()
 
             if deleted:
                 print(f"[轮询] 删除文件: {deleted}")

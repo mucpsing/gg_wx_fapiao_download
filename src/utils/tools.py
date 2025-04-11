@@ -30,7 +30,7 @@ def str2md5(inputStr: str = None) -> str:
     return obj.hexdigest()
 
 
-def refresh_explorer(path=None):
+def refresh_explorer(path: str = None):
     """
     通知资源管理器刷新指定目录（传None则刷新整个桌面）
     """
